@@ -4,7 +4,7 @@ Static one-page site for Driveway Detailing Co., a student-owned, fully mobile c
 
 Files: `index.html`, `styles.css`, `script.js`, `images/`. No build step — open `index.html` in a browser.
 
-Content comes from the business's Google Drive (logo, pricing/deal graphics, photos) and Gmail (Google reviews, review link). License plates in customer photos are blurred.
+Content comes from the business's Google Drive (logos, pricing/deal graphics, job photos and before/after comparisons) and Gmail (Google reviews, review link). License plates in customer photos are blurred.
 
 ## Settings (top of `script.js`)
 - `QUOTE_EMAIL` — where booking requests from the form go

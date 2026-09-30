@@ -47,7 +47,7 @@ links.addEventListener("click", (e) => {
 });
 
 // Reveal on scroll
-const revealTargets = document.querySelectorAll(".price-card, .addons, .deals, .gallery figure, .steps li, .reviews blockquote, details");
+const revealTargets = document.querySelectorAll(".price-card, .addons, .deals, .gallery figure, .ba-grid figure, .steps li, .reviews blockquote, details");
 if ("IntersectionObserver" in window) {
   revealTargets.forEach((el) => el.classList.add("reveal"));
   const io = new IntersectionObserver((entries) => {

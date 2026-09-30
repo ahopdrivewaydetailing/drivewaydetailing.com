@@ -76,6 +76,8 @@ p { margin: 0 0 1em; }
 .nav { display: flex; align-items: center; justify-content: space-between; height: 72px; }
 .brand { display: flex; align-items: center; gap: .7rem; color: var(--cream); }
 .brand img { border-radius: 50%; }
+.brand .wordmark { border-radius: 0; height: 45px; width: auto; }
+.site-footer .brand .wordmark { height: 50px; }
 .brand-text { text-transform: uppercase; letter-spacing: .2em; font-weight: 500; font-size: .95rem; }
 .brand-text em { font-style: normal; color: var(--gold); }
 .nav-links { display: flex; align-items: center; gap: 1.75rem; }
@@ -149,7 +151,19 @@ p { margin: 0 0 1em; }
 
 /* Gallery */
 .gallery { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 260px; grid-auto-flow: dense; gap: 12px; }
-.gallery figure { margin: 0; overflow: hidden; border-radius: 10px; background: var(--panel-2); }
+.gallery figure { position: relative; margin: 0; overflow: hidden; border-radius: 10px; background: var(--panel-2); }
+.gallery figcaption, .ba-grid figcaption {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 28px 14px 10px; font-size: .8rem; letter-spacing: .06em; color: var(--cream);
+  background: linear-gradient(0deg, rgba(0, 0, 0, .75), transparent);
+}
+
+/* Before & After */
+.ba-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.ba-grid figure { position: relative; margin: 0; overflow: hidden; border-radius: 12px; border: 1px solid var(--line); background: var(--panel-2); aspect-ratio: 3 / 2; }
+.ba-grid img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.ba-grid figcaption { font-size: .9rem; }
+.ba-grid figcaption strong { color: var(--gold); font-weight: 600; margin-right: .4em; }
 .gallery figure.tall { grid-row: span 2; }
 .gallery img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
 .gallery figure:hover img { transform: scale(1.04); }
@@ -253,6 +267,7 @@ details p { color: var(--muted); margin: 0 0 20px; }
   .reviews { grid-template-columns: 1fr 1fr; }
   .gallery { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 220px; }
   .props-grid { grid-template-columns: repeat(2, 1fr); }
+  .ba-grid { grid-template-columns: 1fr; }
   .props-grid div { justify-content: flex-start; }
 }
 @media (max-width: 800px) {
