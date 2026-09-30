@@ -10,8 +10,8 @@ Content comes from the business's Google Drive (logos, pricing/deal graphics, jo
 - `TEXT_NUMBER` — the phone number booking requests from the form are texted to
 - `BOOKING_URL` — paste your Calendly link and every "Book" button opens it
 
-## Updating photos
-Add web-sized JPGs (about 1200px on the long side) to `images/` and add a `<figure>` to the `#work` gallery in `index.html`.
+## Adding before/after photos
+Before & After sliders use a pair of photos per car: `images/ba-<name>-before.jpg` and `images/ba-<name>-after.jpg`. Copy a `<figure class="ba-slider">` block in `index.html` and point it at the new pair.
 
 ## Hosting
 Works on any static host (GitHub Pages, Netlify, Cloudflare Pages). The request form opens the visitor's texting app with their request addressed to `TEXT_NUMBER`.
