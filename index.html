@@ -45,7 +45,6 @@
       <nav id="nav-links" class="nav-links">
         <a href="#pricing">Pricing</a>
         <a href="#results">Before &amp; After</a>
-        <a href="#work">Our Work</a>
         <a href="#about">About</a>
         <a href="#reviews">Reviews</a>
         <a href="#faq">FAQ</a>
@@ -245,51 +244,92 @@
         <div class="section-head">
           <p class="eyebrow">Before &amp; After</p>
           <h2>The difference is in the details</h2>
-          <p>Side-by-side results from real customer vehicles.</p>
+          <p>Real customer vehicles. Drag the bar on any photo to swap the before for the after.</p>
         </div>
         <div class="ba-grid">
-          <figure><img src="images/ba-tesla-front.jpg" alt="Before and after: Tesla Model Y interior" loading="lazy"><figcaption><strong>Tesla Model Y</strong> Interior</figcaption></figure>
-          <figure><img src="images/ba-gle-front.jpg" alt="Before and after: Mercedes GLE 350 interior" loading="lazy"><figcaption><strong>Mercedes GLE 350</strong> Interior</figcaption></figure>
-          <figure><img src="images/ba-s10-paint.jpg" alt="Before and after: Chevy S10 paint" loading="lazy"><figcaption><strong>Chevy S10</strong> Paint</figcaption></figure>
-          <figure><img src="images/ba-infiniti-console.jpg" alt="Before and after: Infiniti center console" loading="lazy"><figcaption><strong>Infiniti</strong> Center console</figcaption></figure>
-          <figure><img src="images/ba-tesla-trunk.jpg" alt="Before and after: Tesla Model Y trunk" loading="lazy"><figcaption><strong>Tesla Model Y</strong> Trunk</figcaption></figure>
-          <figure><img src="images/ba-gle-trunk.jpg" alt="Before and after: Mercedes GLE 350 cargo area" loading="lazy"><figcaption><strong>Mercedes GLE 350</strong> Cargo area</figcaption></figure>
-          <figure><img src="images/ba-tesla-rear.jpg" alt="Before and after: Tesla Model Y rear seats" loading="lazy"><figcaption><strong>Tesla Model Y</strong> Rear seats</figcaption></figure>
-          <figure><img src="images/ba-gle-rear.jpg" alt="Before and after: Mercedes GLE 350 rear seats" loading="lazy"><figcaption><strong>Mercedes GLE 350</strong> Rear seats</figcaption></figure>
-        </div>
-      </div>
-    </section>
-
-    <!-- Our work -->
-    <section id="work" class="section section-alt">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">Our Work</p>
-          <h2>Finished right in the driveway</h2>
-          <p>Real results from recent details. See more on <a href="https://www.instagram.com/ahopdrivewaydetailing/" target="_blank" rel="noopener">Instagram</a>.</p>
-        </div>
-        <div class="gallery">
-          <figure class="tall"><img src="images/mustang-rear.jpg" alt="Black Mustang Dark Horse gleaming in a driveway after an exterior detail" loading="lazy"><figcaption>Ford Mustang Dark Horse</figcaption></figure>
-          <figure class="tall"><img src="images/s10-front.jpg" alt="Red Chevy S10 pickup with freshly polished paint" loading="lazy"><figcaption>Chevy S10</figcaption></figure>
-          <figure><img src="images/odyssey-front-seats.jpg" alt="Clean Honda Odyssey front seats and floor mats" loading="lazy"><figcaption>Honda Odyssey</figcaption></figure>
-          <figure><img src="images/mustang-wheel.jpg" alt="Clean wheel, tire and blue brake caliper after detailing" loading="lazy"><figcaption>Ford Mustang Dark Horse</figcaption></figure>
-          <figure><img src="images/trax-dash.jpg" alt="Spotless Chevy Trax dashboard and front seats" loading="lazy"><figcaption>Chevy Trax</figcaption></figure>
-          <figure class="tall"><img src="images/action-steam.jpg" alt="Steam cleaning a seat during an interior detail" loading="lazy"><figcaption>In progress</figcaption></figure>
-          <figure><img src="images/mustang-spoiler.jpg" alt="Deep gloss reflections on black paint and rear spoiler" loading="lazy"><figcaption>Ford Mustang Dark Horse</figcaption></figure>
-          <figure class="tall"><img src="images/s10-rear.jpg" alt="Rear three-quarter view of the detailed red S10" loading="lazy"><figcaption>Chevy S10</figcaption></figure>
-          <figure><img src="images/odyssey-trunk.jpg" alt="Vacuumed Honda Odyssey cargo area and third row" loading="lazy"><figcaption>Honda Odyssey</figcaption></figure>
-          <figure><img src="images/mustang-driver-seat.jpg" alt="Spotless driver seat and dashboard after interior detail" loading="lazy"><figcaption>Ford Mustang Dark Horse</figcaption></figure>
-          <figure class="tall"><img src="images/action-vacuum.jpg" alt="Detail vacuuming of carpet during an interior clean" loading="lazy"><figcaption>In progress</figcaption></figure>
-          <figure><img src="images/mustang-front.jpg" alt="Front three-quarter view of a freshly detailed black Mustang" loading="lazy"><figcaption>Ford Mustang Dark Horse</figcaption></figure>
-          <figure><img src="images/odyssey-dash.jpg" alt="Clean Honda Odyssey dashboard and door panel" loading="lazy"><figcaption>Honda Odyssey</figcaption></figure>
-          <figure><img src="images/suv-rear-seat.jpg" alt="Clean Chevy Trax rear seats and door panels" loading="lazy"><figcaption>Chevy Trax</figcaption></figure>
-          <figure><img src="images/mustang-decklid.jpg" alt="Close-up of glossy decklid and spoiler reflecting the sky" loading="lazy"><figcaption>Ford Mustang Dark Horse</figcaption></figure>
+          <figure class="ba-slider" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Before and after: Tesla Model Y interior. Use left and right arrows to compare.">
+            <img class="ba-before" src="images/ba-tesla-driver-before.jpg" alt="Tesla Model Y interior before detailing" loading="lazy" draggable="false">
+            <img class="ba-after" src="images/ba-tesla-driver-after.jpg" alt="Tesla Model Y interior after detailing" loading="lazy" draggable="false">
+            <span class="ba-tag ba-tag-after">After</span><span class="ba-tag ba-tag-before">Before</span>
+            <span class="ba-handle" aria-hidden="true"></span>
+            <figcaption><strong>Tesla Model Y</strong> Interior</figcaption>
+          </figure>
+          <figure class="ba-slider" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Before and after: Mercedes GLE 350 interior. Use left and right arrows to compare.">
+            <img class="ba-before" src="images/ba-gle-driver-before.jpg" alt="Mercedes GLE 350 interior before detailing" loading="lazy" draggable="false">
+            <img class="ba-after" src="images/ba-gle-driver-after.jpg" alt="Mercedes GLE 350 interior after detailing" loading="lazy" draggable="false">
+            <span class="ba-tag ba-tag-after">After</span><span class="ba-tag ba-tag-before">Before</span>
+            <span class="ba-handle" aria-hidden="true"></span>
+            <figcaption><strong>Mercedes GLE 350</strong> Interior</figcaption>
+          </figure>
+          <figure class="ba-slider" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Before and after: Chevy S10 paint. Use left and right arrows to compare.">
+            <img class="ba-before" src="images/ba-s10-paint-before.jpg" alt="Chevy S10 paint before detailing" loading="lazy" draggable="false">
+            <img class="ba-after" src="images/ba-s10-paint-after.jpg" alt="Chevy S10 paint after detailing" loading="lazy" draggable="false">
+            <span class="ba-tag ba-tag-after">After</span><span class="ba-tag ba-tag-before">Before</span>
+            <span class="ba-handle" aria-hidden="true"></span>
+            <figcaption><strong>Chevy S10</strong> Paint</figcaption>
+          </figure>
+          <figure class="ba-slider" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Before and after: Tesla Model Y center console. Use left and right arrows to compare.">
+            <img class="ba-before" src="images/ba-tesla-console-before.jpg" alt="Tesla Model Y center console before detailing" loading="lazy" draggable="false">
+            <img class="ba-after" src="images/ba-tesla-console-after.jpg" alt="Tesla Model Y center console after detailing" loading="lazy" draggable="false">
+            <span class="ba-tag ba-tag-after">After</span><span class="ba-tag ba-tag-before">Before</span>
+            <span class="ba-handle" aria-hidden="true"></span>
+            <figcaption><strong>Tesla Model Y</strong> Center console</figcaption>
+          </figure>
+          <figure class="ba-slider" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Before and after: Mercedes GLE 350 rear seats. Use left and right arrows to compare.">
+            <img class="ba-before" src="images/ba-gle-rear-before.jpg" alt="Mercedes GLE 350 rear seats before detailing" loading="lazy" draggable="false">
+            <img class="ba-after" src="images/ba-gle-rear-after.jpg" alt="Mercedes GLE 350 rear seats after detailing" loading="lazy" draggable="false">
+            <span class="ba-tag ba-tag-after">After</span><span class="ba-tag ba-tag-before">Before</span>
+            <span class="ba-handle" aria-hidden="true"></span>
+            <figcaption><strong>Mercedes GLE 350</strong> Rear seats</figcaption>
+          </figure>
+          <figure class="ba-slider" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Before and after: Infiniti center console. Use left and right arrows to compare.">
+            <img class="ba-before" src="images/ba-infiniti-console-before.jpg" alt="Infiniti center console before detailing" loading="lazy" draggable="false">
+            <img class="ba-after" src="images/ba-infiniti-console-after.jpg" alt="Infiniti center console after detailing" loading="lazy" draggable="false">
+            <span class="ba-tag ba-tag-after">After</span><span class="ba-tag ba-tag-before">Before</span>
+            <span class="ba-handle" aria-hidden="true"></span>
+            <figcaption><strong>Infiniti</strong> Center console</figcaption>
+          </figure>
+          <figure class="ba-slider" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Before and after: Tesla Model Y trunk. Use left and right arrows to compare.">
+            <img class="ba-before" src="images/ba-tesla-trunk-before.jpg" alt="Tesla Model Y trunk before detailing" loading="lazy" draggable="false">
+            <img class="ba-after" src="images/ba-tesla-trunk-after.jpg" alt="Tesla Model Y trunk after detailing" loading="lazy" draggable="false">
+            <span class="ba-tag ba-tag-after">After</span><span class="ba-tag ba-tag-before">Before</span>
+            <span class="ba-handle" aria-hidden="true"></span>
+            <figcaption><strong>Tesla Model Y</strong> Trunk</figcaption>
+          </figure>
+          <figure class="ba-slider" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Before and after: Mercedes GLE 350 cargo area. Use left and right arrows to compare.">
+            <img class="ba-before" src="images/ba-gle-trunk-before.jpg" alt="Mercedes GLE 350 cargo area before detailing" loading="lazy" draggable="false">
+            <img class="ba-after" src="images/ba-gle-trunk-after.jpg" alt="Mercedes GLE 350 cargo area after detailing" loading="lazy" draggable="false">
+            <span class="ba-tag ba-tag-after">After</span><span class="ba-tag ba-tag-before">Before</span>
+            <span class="ba-handle" aria-hidden="true"></span>
+            <figcaption><strong>Mercedes GLE 350</strong> Cargo area</figcaption>
+          </figure>
+          <figure class="ba-slider" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Before and after: Tesla Model Y rear seats. Use left and right arrows to compare.">
+            <img class="ba-before" src="images/ba-tesla-rear-before.jpg" alt="Tesla Model Y rear seats before detailing" loading="lazy" draggable="false">
+            <img class="ba-after" src="images/ba-tesla-rear-after.jpg" alt="Tesla Model Y rear seats after detailing" loading="lazy" draggable="false">
+            <span class="ba-tag ba-tag-after">After</span><span class="ba-tag ba-tag-before">Before</span>
+            <span class="ba-handle" aria-hidden="true"></span>
+            <figcaption><strong>Tesla Model Y</strong> Rear seats</figcaption>
+          </figure>
+          <figure class="ba-slider" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Before and after: Tesla Model Y passenger side. Use left and right arrows to compare.">
+            <img class="ba-before" src="images/ba-tesla-passenger-before.jpg" alt="Tesla Model Y passenger side before detailing" loading="lazy" draggable="false">
+            <img class="ba-after" src="images/ba-tesla-passenger-after.jpg" alt="Tesla Model Y passenger side after detailing" loading="lazy" draggable="false">
+            <span class="ba-tag ba-tag-after">After</span><span class="ba-tag ba-tag-before">Before</span>
+            <span class="ba-handle" aria-hidden="true"></span>
+            <figcaption><strong>Tesla Model Y</strong> Passenger side</figcaption>
+          </figure>
+          <figure class="ba-slider" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Before and after: Mercedes GLE 350 passenger side. Use left and right arrows to compare.">
+            <img class="ba-before" src="images/ba-gle-passenger-before.jpg" alt="Mercedes GLE 350 passenger side before detailing" loading="lazy" draggable="false">
+            <img class="ba-after" src="images/ba-gle-passenger-after.jpg" alt="Mercedes GLE 350 passenger side after detailing" loading="lazy" draggable="false">
+            <span class="ba-tag ba-tag-after">After</span><span class="ba-tag ba-tag-before">Before</span>
+            <span class="ba-handle" aria-hidden="true"></span>
+            <figcaption><strong>Mercedes GLE 350</strong> Passenger side</figcaption>
+          </figure>
         </div>
       </div>
     </section>
 
     <!-- About -->
-    <section id="about" class="section">
+    <section id="about" class="section section-alt">
       <div class="container narrow about">
         <p class="eyebrow">About</p>
         <blockquote class="owner-quote">
@@ -300,7 +340,7 @@
     </section>
 
     <!-- Process -->
-    <section class="section section-alt">
+    <section class="section">
       <div class="container">
         <div class="section-head">
           <p class="eyebrow">How it works</p>
@@ -315,7 +355,7 @@
     </section>
 
     <!-- FAQ -->
-    <section id="faq" class="section">
+    <section id="faq" class="section section-alt">
       <div class="container narrow">
         <div class="section-head">
           <p class="eyebrow">FAQ</p>
@@ -345,7 +385,7 @@
     </section>
 
     <!-- Book -->
-    <section id="book" class="section section-alt">
+    <section id="book" class="section">
       <div class="container quote-grid">
         <div class="quote-copy">
           <p class="eyebrow">Book your detail</p>
@@ -397,7 +437,6 @@
       </div>
       <nav>
         <a href="#pricing">Pricing</a>
-        <a href="#work">Our Work</a>
         <a href="#about">About</a>
         <a href="#faq">FAQ</a>
         <a href="#book">Book</a>

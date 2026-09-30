@@ -47,7 +47,7 @@ links.addEventListener("click", (e) => {
 });
 
 // Reveal on scroll
-const revealTargets = document.querySelectorAll(".price-card, .addons, .deals, .gallery figure, .ba-grid figure, .steps li, details");
+const revealTargets = document.querySelectorAll(".price-card, .addons, .deals, .ba-slider, .steps li, details");
 if ("IntersectionObserver" in window) {
   revealTargets.forEach((el) => el.classList.add("reveal"));
   const io = new IntersectionObserver((entries) => {
@@ -59,6 +59,43 @@ if ("IntersectionObserver" in window) {
   }, { threshold: 0.15 });
   revealTargets.forEach((el) => io.observe(el));
 }
+
+// Before & After sliders: drag (or tap, or use arrow keys) to move the bar.
+// Everything left of the bar shows the after photo, right of it the before photo.
+document.querySelectorAll(".ba-slider").forEach((slider) => {
+  const tagAfter = slider.querySelector(".ba-tag-after");
+  const tagBefore = slider.querySelector(".ba-tag-before");
+  const set = (pct) => {
+    const p = Math.max(0, Math.min(100, pct));
+    slider.style.setProperty("--pos", p + "%");
+    slider.setAttribute("aria-valuenow", String(Math.round(p)));
+    tagAfter.style.opacity = p < 12 ? "0" : "1";
+    tagBefore.style.opacity = p > 88 ? "0" : "1";
+  };
+  const fromEvent = (e) => {
+    const r = slider.getBoundingClientRect();
+    set(((e.clientX - r.left) / r.width) * 100);
+  };
+  let active = false;
+  slider.addEventListener("pointerdown", (e) => {
+    active = true;
+    slider.setPointerCapture(e.pointerId);
+    fromEvent(e);
+  });
+  slider.addEventListener("pointermove", (e) => { if (active) fromEvent(e); });
+  const stop = () => { active = false; };
+  slider.addEventListener("pointerup", stop);
+  slider.addEventListener("pointercancel", stop);
+  slider.addEventListener("keydown", (e) => {
+    const now = parseFloat(slider.getAttribute("aria-valuenow"));
+    const step = e.shiftKey ? 25 : 5;
+    if (e.key === "ArrowRight") { e.preventDefault(); set(now + step); }
+    if (e.key === "ArrowLeft") { e.preventDefault(); set(now - step); }
+    if (e.key === "Home") { e.preventDefault(); set(0); }
+    if (e.key === "End") { e.preventDefault(); set(100); }
+  });
+  set(50);
+});
 
 // Review wheel: arrows, drag and swipe move through the cards; cards fade and shrink
 // the further they are from the visible window, like a scroll wheel.
