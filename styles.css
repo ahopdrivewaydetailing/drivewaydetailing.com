@@ -318,6 +318,8 @@ details p { color: var(--muted); margin: 0 0 20px; }
   .hero-logo { width: 76px; height: 76px; }
   .brand-text { font-size: .8rem; letter-spacing: .14em; }
   .review-wheel { --visible: 1; --gap: 16px; gap: 6px; }
+  .review-card { padding: 22px; }
+  .review-card p { font-size: .94rem; line-height: 1.55; }
   .wheel-btn { width: 36px; height: 36px; font-size: 1.3rem; }
   .steps { grid-template-columns: 1fr; }
   .addons ul { grid-template-columns: 1fr; }
