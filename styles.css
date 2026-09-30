@@ -207,6 +207,33 @@ p { margin: 0 0 1em; }
 }
 .section-alt .review-card { background: var(--black); }
 .review-card p { flex: 1; font-size: 1.02rem; }
+/* Long reviews are cut to a few lines so every card keeps the same size; "…" opens the full text. */
+.review-card .review-text {
+  flex: 0 0 auto; margin: 0;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: var(--lines, 4); line-clamp: var(--lines, 4);
+  overflow: hidden;
+}
+.review-card cite { margin-top: auto; padding-top: 16px; }
+.review-more {
+  align-self: flex-start; margin-top: 8px;
+  font: inherit; font-size: 1.1rem; font-weight: 600; line-height: 1; letter-spacing: .1em;
+  color: var(--gold); background: none; border: 1px solid rgba(198, 163, 94, .5); border-radius: 999px;
+  padding: 4px 14px 10px; cursor: pointer; transition: background .15s, color .15s;
+}
+.review-more:hover, .review-more:focus-visible { background: var(--gold); color: var(--black); outline: none; }
+.review-dialog {
+  width: min(560px, calc(100% - 32px)); max-height: 80vh; overflow: auto;
+  background: var(--panel); color: var(--cream);
+  border: 1px solid rgba(198, 163, 94, .5); border-radius: var(--radius); padding: 36px 32px 30px;
+}
+.review-dialog::backdrop { background: rgba(0, 0, 0, .7); backdrop-filter: blur(3px); }
+.review-dialog p { font-size: 1.05rem; margin: 0 0 18px; }
+.review-dialog cite { font-style: normal; color: var(--muted); font-size: .9rem; }
+.review-dialog-close {
+  position: absolute; top: 10px; right: 12px; width: 36px; height: 36px;
+  font-size: 1.5rem; line-height: 1; color: var(--muted); background: none; border: 0; cursor: pointer;
+}
+.review-dialog-close:hover { color: var(--gold); }
 .stars { color: var(--gold); letter-spacing: 3px; margin-bottom: 12px; }
 .review-card cite { font-style: normal; color: var(--muted); font-size: .88rem; }
 .review-cta { justify-content: center; align-items: flex-start; gap: 16px; border-color: rgba(198, 163, 94, .5); }
@@ -318,8 +345,7 @@ details p { color: var(--muted); margin: 0 0 20px; }
   .hero-logo { width: 76px; height: 76px; }
   .brand-text { font-size: .8rem; letter-spacing: .14em; }
   .review-wheel { --visible: 1; --gap: 16px; gap: 6px; }
-  .review-card { padding: 22px; }
-  .review-card p { font-size: .94rem; line-height: 1.55; }
+  .review-card { --lines: 5; }
   .wheel-btn { width: 36px; height: 36px; font-size: 1.3rem; }
   .steps { grid-template-columns: 1fr; }
   .addons ul { grid-template-columns: 1fr; }
