@@ -100,62 +100,6 @@ p { margin: 0 0 1em; }
 .hero-points { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 10px 24px; color: var(--muted); font-weight: 500; }
 .hero-points li::before { content: "✓"; color: var(--teal); font-weight: 800; margin-right: .4em; }
 
-/* Before/after compare */
-.compare {
-  --pos: 50%;
-  position: relative;
-  aspect-ratio: 4 / 3.4;
-  border-radius: 24px;
-  overflow: hidden;
-  box-shadow: 0 30px 60px rgba(15, 23, 42, .2);
-  user-select: none;
-}
-.compare-before, .compare-after { position: absolute; inset: 0; }
-.compare-before {
-  background:
-    radial-gradient(ellipse 18% 10% at 30% 62%, rgba(20, 16, 10, .75), transparent 70%),
-    radial-gradient(ellipse 12% 7% at 38% 70%, rgba(20, 16, 10, .6), transparent 70%),
-    radial-gradient(ellipse 22% 12% at 70% 40%, rgba(40, 55, 20, .55), transparent 70%),
-    radial-gradient(ellipse 30% 14% at 20% 25%, rgba(60, 70, 30, .5), transparent 70%),
-    radial-gradient(ellipse 15% 8% at 75% 80%, rgba(20, 16, 10, .55), transparent 70%),
-    repeating-linear-gradient(90deg, transparent 0 49.5%, rgba(0, 0, 0, .25) 49.5% 50.5%, transparent 50.5% 100%),
-    linear-gradient(160deg, #7c7465, #5f584c);
-}
-.compare-after {
-  clip-path: inset(0 0 0 var(--pos));
-  background:
-    repeating-linear-gradient(90deg, transparent 0 49.5%, rgba(0, 0, 0, .08) 49.5% 50.5%, transparent 50.5% 100%),
-    linear-gradient(160deg, #eceae4, #cfccc3);
-}
-.compare-after::after {
-  content: "";
-  position: absolute; inset: 0;
-  background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, .45) 45%, transparent 60%);
-}
-.tag {
-  position: absolute; top: 16px; left: 16px;
-  background: rgba(15, 23, 42, .75); color: #fff;
-  font-size: .8rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
-  padding: .35em .8em; border-radius: 999px;
-}
-.tag-after { left: auto; right: 16px; background: var(--blue); }
-.compare-slider {
-  position: absolute; inset: 0; width: 100%; height: 100%;
-  margin: 0; opacity: 0; cursor: ew-resize; z-index: 3;
-}
-.compare-handle {
-  position: absolute; top: 0; bottom: 0; left: var(--pos);
-  width: 4px; margin-left: -2px; background: #fff; z-index: 2; pointer-events: none;
-}
-.compare-handle::after {
-  content: "⟷";
-  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-  width: 44px; height: 44px; border-radius: 50%;
-  background: #fff; color: var(--blue); font-weight: 800;
-  display: grid; place-items: center;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, .25);
-}
-
 /* Trust bar */
 .trust { background: var(--dark); color: #fff; padding: 32px 0; }
 .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; text-align: center; }
@@ -218,23 +162,6 @@ p { margin: 0 0 1em; }
   background: linear-gradient(135deg, var(--blue), var(--teal));
   color: #fff; font-weight: 800; font-size: 1.4rem; margin-bottom: 16px;
 }
-
-/* Gallery */
-.gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-.gallery figure { margin: 0; }
-.gallery figcaption { margin-top: 10px; color: #cbd5e1; font-weight: 500; }
-.ph { aspect-ratio: 1; border-radius: var(--radius); position: relative; overflow: hidden; }
-.ph::before, .ph::after {
-  content: "BEFORE"; position: absolute; top: 0; bottom: 0; width: 50%;
-  display: flex; align-items: flex-end; padding: 10px;
-  font-size: .7rem; font-weight: 700; letter-spacing: .1em;
-}
-.ph::before { left: 0; color: #fff; background: linear-gradient(160deg, #6b6457, #4d473d); }
-.ph::after { content: "AFTER"; right: 0; justify-content: flex-end; color: var(--ink); background: linear-gradient(160deg, #eeece6, #d3d0c8); }
-.ph-3::before { background: linear-gradient(160deg, #6e6e6e, #555); }
-.ph-3::after { color: #fff; background: linear-gradient(160deg, #222, #0d0d0d); }
-.ph-4::before { background: repeating-linear-gradient(0deg, #5f5448 0 18px, #3d352c 18px 20px), #5f5448; }
-.ph-4::after { background: repeating-linear-gradient(0deg, #c9794f 0 18px, #efe6da 18px 20px); color: #fff; }
 
 /* Reviews */
 .reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
@@ -315,11 +242,44 @@ details p { color: var(--muted); margin: 0 0 20px; }
   .reveal { opacity: 1; transform: none; transition: none; }
 }
 
+/* Hero art */
+.hero-svg { width: 100%; height: auto; display: block; border-radius: 28px; box-shadow: 0 30px 60px rgba(15, 23, 42, .2); }
+.hero-svg .shine { animation: shine 4.5s ease-in-out infinite; }
+.hero-svg .sparkles { animation: twinkle 2.4s ease-in-out infinite; }
+@keyframes shine { 0%, 35% { transform: skewX(-20deg) translateX(0); } 75%, 100% { transform: skewX(-20deg) translateX(720px); } }
+@keyframes twinkle { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
+
+/* Pricing extras */
+.pricing-two { grid-template-columns: repeat(2, 1fr); max-width: 860px; margin-inline: auto; }
+.price-note { color: var(--muted); margin: -.8em 0 1.2em; font-weight: 500; }
+.fine-print { max-width: 720px; margin: 36px auto 0; text-align: center; color: var(--muted); font-size: .9rem; }
+
+/* Reviews on dark */
+.section-dark .reviews blockquote { background: #111a2e; border: 1px solid #1e293b; }
+.section-dark .reviews p { color: #e2e8f0; }
+.section-dark .reviews cite { color: #94a3b8; }
+.review-cta { justify-content: center; align-items: flex-start; gap: 16px; }
+.review-cta p { flex: 0; }
+.insta-link { color: #5eead4; font-weight: 600; }
+
+/* Form extras */
+.quote-form label.check { display: flex; gap: 10px; align-items: flex-start; font-weight: 500; color: var(--muted); font-size: .88rem; }
+.quote-form label.check input { width: auto; margin: 4px 0 0; flex: none; accent-color: var(--blue); }
+.quote-form label.check input.invalid { outline: 2px solid #dc2626; }
+.booking-btn { margin-top: 8px; }
+[hidden] { display: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-svg .shine, .hero-svg .sparkles { animation: none; }
+}
+@media (max-width: 960px) {
+  .pricing-two { grid-template-columns: 1fr; }
+}
+
 /* Responsive */
 @media (max-width: 960px) {
   .hero-grid, .quote-grid { grid-template-columns: 1fr; gap: 40px; }
   .cards, .reviews { grid-template-columns: repeat(2, 1fr); }
-  .gallery { grid-template-columns: repeat(2, 1fr); }
   .pricing { grid-template-columns: 1fr; max-width: 440px; margin-inline: auto; }
   .price-card.featured { transform: none; }
 }

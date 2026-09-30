@@ -1,8 +1,34 @@
-// Where quote requests are sent. Replace with your real business email.
-const QUOTE_EMAIL = "info@drivewaydetailing.com";
+// ---- Business settings ------------------------------------------------------
+// Where booking requests from the form are sent.
+const QUOTE_EMAIL = "ahopdrivewaydetailing@gmail.com";
+// Paste your Calendly booking link here (e.g. "https://calendly.com/your-name/mobile-detail")
+// and every "Book" button will open it. Leave empty to send people to the request form.
+const BOOKING_URL = "";
+// Add a business phone number (e.g. "(214) 555-0123") to show it in the contact list.
+const PHONE = "";
+// -----------------------------------------------------------------------------
 
-// Footer year
 document.getElementById("year").textContent = new Date().getFullYear();
+
+// Booking link
+if (BOOKING_URL) {
+  document.querySelectorAll("[data-book], [data-fab]").forEach((a) => {
+    a.href = BOOKING_URL;
+    a.target = "_blank";
+    a.rel = "noopener";
+  });
+  const bookingBtn = document.querySelector("[data-booking-link]");
+  bookingBtn.href = BOOKING_URL;
+  bookingBtn.hidden = false;
+}
+
+// Phone
+if (PHONE) {
+  const link = document.querySelector("[data-phone-link]");
+  link.textContent = PHONE;
+  link.href = "tel:" + PHONE.replace(/[^\d+]/g, "");
+  document.querySelector("[data-phone-row]").hidden = false;
+}
 
 // Sticky header shadow
 const header = document.querySelector(".site-header");
@@ -24,55 +50,22 @@ links.addEventListener("click", (e) => {
   }
 });
 
-// Before/after slider
-const compare = document.querySelector(".compare");
-const slider = document.querySelector(".compare-slider");
-slider.addEventListener("input", () => compare.style.setProperty("--pos", slider.value + "%"));
-
-// Package buttons preselect the form option
-const packageSelect = document.getElementById("package-select");
-document.querySelectorAll("[data-package]").forEach((btn) => {
-  btn.addEventListener("click", () => { packageSelect.value = btn.dataset.package; });
-});
-
-// Reveal-on-scroll and count-up stats
-const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const revealTargets = document.querySelectorAll(".card, .price-card, .steps li, .gallery figure, .reviews blockquote, details");
-const counters = document.querySelectorAll("[data-count]");
-
-function countUp(el) {
-  const target = Number(el.dataset.count);
-  const suffix = "+";
-  if (reduceMotion) { el.textContent = target.toLocaleString() + suffix; return; }
-  const start = performance.now();
-  const duration = 1400;
-  const tick = (now) => {
-    const t = Math.min((now - start) / duration, 1);
-    const eased = 1 - Math.pow(1 - t, 3);
-    el.textContent = Math.round(target * eased).toLocaleString() + (t === 1 ? suffix : "");
-    if (t < 1) requestAnimationFrame(tick);
-  };
-  requestAnimationFrame(tick);
-}
-
+// Reveal on scroll
+const revealTargets = document.querySelectorAll(".card, .price-card, .steps li, .reviews blockquote, details");
 if ("IntersectionObserver" in window) {
   revealTargets.forEach((el) => el.classList.add("reveal"));
   const io = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
-      if (entry.target.dataset.count) countUp(entry.target);
-      else entry.target.classList.add("visible");
+      entry.target.classList.add("visible");
       io.unobserve(entry.target);
     });
   }, { threshold: 0.15 });
   revealTargets.forEach((el) => io.observe(el));
-  counters.forEach((el) => io.observe(el));
-} else {
-  counters.forEach(countUp);
 }
 
-// Quote form: validate, then open the visitor's email app with the details filled in.
-// To receive submissions without email apps, point the form at a service like Formspree or Netlify Forms.
+// Booking request form: validate, then open the visitor's email app with the details filled in.
+// To receive submissions without an email app, point the form at a service like Formspree.
 const form = document.getElementById("quote-form");
 const status = form.querySelector(".form-status");
 
@@ -82,12 +75,12 @@ form.addEventListener("submit", (e) => {
 
   let valid = true;
   form.querySelectorAll("[required]").forEach((field) => {
-    const ok = field.value.trim() !== "" && field.checkValidity();
+    const ok = field.type === "checkbox" ? field.checked : field.value.trim() !== "" && field.checkValidity();
     field.classList.toggle("invalid", !ok);
     if (!ok) valid = false;
   });
   if (!valid) {
-    status.textContent = "Please fill in your name, phone, and a valid email.";
+    status.textContent = "Please fill in your name, phone, email and vehicle, and accept the pricing note.";
     status.classList.add("err");
     return;
   }
@@ -97,14 +90,16 @@ form.addEventListener("submit", (e) => {
     `Name: ${data.get("name")}`,
     `Phone: ${data.get("phone")}`,
     `Email: ${data.get("email")}`,
-    `Address: ${data.get("address") || "-"}`,
-    `Surface: ${data.get("surface")}`,
+    `Service address: ${data.get("address") || "-"}`,
+    `Vehicle: ${data.get("vehicle")}`,
     `Package: ${data.get("package")}`,
     "",
     `${data.get("message") || ""}`,
+    "",
+    "I understand listed prices are starting estimates and the final price will be confirmed before work begins.",
   ].join("\n");
 
-  const subject = `Quote request - ${data.get("name")}`;
+  const subject = `Mobile detail request - ${data.get("name")} (${data.get("vehicle")})`;
   window.location.href = `mailto:${QUOTE_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
   status.textContent = "Thanks! Your email app should open with your request ready to send.";
@@ -112,3 +107,4 @@ form.addEventListener("submit", (e) => {
 });
 
 form.addEventListener("input", (e) => e.target.classList.remove("invalid"));
+form.addEventListener("change", (e) => e.target.classList.remove("invalid"));
