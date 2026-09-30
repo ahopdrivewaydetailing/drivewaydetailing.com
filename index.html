@@ -192,6 +192,32 @@
       </div>
     </section>
 
+    <!-- Reviews -->
+    <section id="reviews" class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Reviews</p>
+          <h2>5 stars on Google</h2>
+        </div>
+        <div class="reviews">
+          <blockquote>
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p>"Andrew did an amazing job detailing my car a few weeks ago! I was looking for a quick detail on&hellip;"</p>
+            <cite>Tristyn B. &middot; Google</cite>
+          </blockquote>
+          <blockquote>
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p>"Did a very good and thorough job. Paid attention to detail and didn't have to leave my house&hellip;"</p>
+            <cite>Blake R. &middot; Google</cite>
+          </blockquote>
+          <blockquote class="review-cta">
+            <p>Had your car detailed by us? We'd love to hear how it went.</p>
+            <a href="https://g.page/r/CS7ZPvaLHyNoEBM/review" class="btn" target="_blank" rel="noopener">Leave a Google Review</a>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
     <!-- Before & After -->
     <section id="results" class="section">
       <div class="container">
@@ -246,10 +272,9 @@
       <div class="container narrow about">
         <p class="eyebrow">About</p>
         <blockquote class="owner-quote">
-          <p>Cross Country and Track at UT Dallas &ndash; the same consistency, dedication, and patience applied to paint.</p>
+          <p>Driveway Detailing is a student-owned, fully mobile detailing business. Every car gets the same careful, thorough process, done at your home or office with straight, upfront pricing.</p>
           <cite>Andrew &middot; Owner, Driveway Detailing</cite>
         </blockquote>
-        <p class="about-copy">Driveway Detailing is a student-owned, fully mobile detailing business. Every car gets the same careful, thorough process, done at your home or office with straight, upfront pricing.</p>
       </div>
     </section>
 
@@ -268,34 +293,8 @@
       </div>
     </section>
 
-    <!-- Reviews -->
-    <section id="reviews" class="section">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">Reviews</p>
-          <h2>5 stars on Google</h2>
-        </div>
-        <div class="reviews">
-          <blockquote>
-            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <p>"Andrew did an amazing job detailing my car a few weeks ago! I was looking for a quick detail on&hellip;"</p>
-            <cite>Tristyn B. &middot; Google</cite>
-          </blockquote>
-          <blockquote>
-            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <p>"Did a very good and thorough job. Paid attention to detail and didn't have to leave my house&hellip;"</p>
-            <cite>Blake R. &middot; Google</cite>
-          </blockquote>
-          <blockquote class="review-cta">
-            <p>Had your car detailed by us? We'd love to hear how it went.</p>
-            <a href="https://g.page/r/CS7ZPvaLHyNoEBM/review" class="btn" target="_blank" rel="noopener">Leave a Google Review</a>
-          </blockquote>
-        </div>
-      </div>
-    </section>
-
     <!-- FAQ -->
-    <section id="faq" class="section section-alt">
+    <section id="faq" class="section">
       <div class="container narrow">
         <div class="section-head">
           <p class="eyebrow">FAQ</p>
@@ -325,7 +324,7 @@
     </section>
 
     <!-- Book -->
-    <section id="book" class="section">
+    <section id="book" class="section section-alt">
       <div class="container quote-grid">
         <div class="quote-copy">
           <p class="eyebrow">Book your detail</p>
@@ -342,9 +341,8 @@
         <form class="quote-form" id="quote-form" novalidate>
           <div class="row">
             <label>Name<input name="name" required autocomplete="name"></label>
-            <label>Phone<input name="phone" type="tel" required autocomplete="tel"></label>
+            <label>Phone number<input name="phone" type="tel" required autocomplete="tel" inputmode="tel" placeholder="(555) 123-4567"></label>
           </div>
-          <label>Email<input name="email" type="email" required autocomplete="email"></label>
           <label>Service address<input name="address" autocomplete="street-address" placeholder="Street, city"></label>
           <div class="row">
             <label>Vehicle make &amp; model<input name="vehicle" required placeholder="e.g. 2013 Chevrolet Corvette ZR1"></label>
@@ -360,7 +358,7 @@
           </div>
           <label>Preferred date &amp; notes<textarea name="message" rows="4" placeholder="Preferred day/time, add-ons, pet hair, odors..."></textarea></label>
           <label class="check"><input type="checkbox" name="agree" required> I understand prices may vary based on my vehicle's size and condition, and the final price will be confirmed with me before any work begins.</label>
-          <button type="submit" class="btn btn-block">Send Booking Request</button>
+          <button type="submit" class="btn btn-block">Text My Booking Request</button>
           <p class="form-status" role="status" aria-live="polite"></p>
         </form>
       </div>

@@ -1,6 +1,6 @@
 // ---- Business settings ------------------------------------------------------
-// Where booking requests from the form are sent.
-const QUOTE_EMAIL = "ahopdrivewaydetailing@gmail.com";
+// Booking requests from the form are texted to this number.
+const TEXT_NUMBER = "+17138186853";
 // Paste your Calendly booking link here (e.g. "https://calendly.com/your-name/mobile-detail")
 // and every "Book" button will open it. Leave empty to send people to the request form.
 const BOOKING_URL = "https://calendly.com/ahopdrivewaydetailing/bookadetail";
@@ -60,8 +60,8 @@ if ("IntersectionObserver" in window) {
   revealTargets.forEach((el) => io.observe(el));
 }
 
-// Booking request form: validate, then open the visitor's email app with the details filled in.
-// To receive submissions without an email app, point the form at a service like Formspree.
+// Booking request form: validate, then open the visitor's texting app with the request
+// filled in and addressed to TEXT_NUMBER, so it arrives on the business phone as a text.
 const form = document.getElementById("quote-form");
 const status = form.querySelector(".form-status");
 
@@ -71,34 +71,35 @@ form.addEventListener("submit", (e) => {
 
   let valid = true;
   form.querySelectorAll("[required]").forEach((field) => {
-    const ok = field.type === "checkbox" ? field.checked : field.value.trim() !== "" && field.checkValidity();
+    let ok = field.type === "checkbox" ? field.checked : field.value.trim() !== "" && field.checkValidity();
+    if (field.name === "phone") ok = field.value.replace(/\D/g, "").length >= 10;
     field.classList.toggle("invalid", !ok);
     if (!ok) valid = false;
   });
   if (!valid) {
-    status.textContent = "Please fill in your name, phone, email and vehicle, and check the pricing box.";
+    status.textContent = "Please fill in your name, a valid phone number and your vehicle, and check the pricing box.";
     status.classList.add("err");
     return;
   }
 
   const data = new FormData(form);
   const body = [
+    "New detail request from the website",
     `Name: ${data.get("name")}`,
     `Phone: ${data.get("phone")}`,
-    `Email: ${data.get("email")}`,
-    `Service address: ${data.get("address") || "-"}`,
+    `Address: ${data.get("address") || "-"}`,
     `Vehicle: ${data.get("vehicle")}`,
     `Package: ${data.get("package")}`,
-    "",
-    `${data.get("message") || ""}`,
-    "",
-    "I understand listed prices are starting estimates and the final price will be confirmed before work begins.",
-  ].join("\n");
+    data.get("message") ? `Notes: ${data.get("message")}` : "",
+    "I understand prices may vary and the final price will be confirmed before work begins.",
+  ].filter(Boolean).join("\n");
 
-  const subject = `Mobile detail request - ${data.get("name")} (${data.get("vehicle")})`;
-  window.location.href = `mailto:${QUOTE_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  // iPhones expect "&body=", everything else "?body=".
+  const sep = /iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent) ? "&" : "?";
+  window.location.href = `sms:${TEXT_NUMBER}${sep}body=${encodeURIComponent(body)}`;
 
-  status.textContent = "Thanks! Your email app should open with your request ready to send.";
+  status.innerHTML = 'Your texting app should open with your request ready &mdash; just hit send. ' +
+    'Not opening? Text us at <a href="sms:' + TEXT_NUMBER + '">(713) 818-6853</a>.';
   status.classList.add("ok");
 });
 

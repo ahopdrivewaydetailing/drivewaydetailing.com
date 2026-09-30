@@ -193,6 +193,7 @@ p { margin: 0 0 1em; }
 .reviews p { flex: 1; font-size: 1.02rem; }
 .stars { color: var(--gold); letter-spacing: 3px; margin-bottom: 12px; }
 .reviews cite { font-style: normal; color: var(--muted); font-size: .88rem; }
+.section-alt .reviews blockquote { background: var(--black); }
 .review-cta { justify-content: center; align-items: flex-start; gap: 16px; }
 .review-cta p { flex: 0; color: var(--muted); }
 
@@ -212,7 +213,7 @@ details p { color: var(--muted); margin: 0 0 20px; }
 .contact-list { list-style: none; padding: 0; margin: 20px 0 0; }
 .contact-list li { display: grid; grid-template-columns: 120px 1fr; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: .95rem; }
 .contact-list span { color: var(--muted); }
-.quote-form { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 32px; }
+.quote-form { background: var(--black); border: 1px solid var(--line); border-radius: var(--radius); padding: 32px; }
 .quote-form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .quote-form label { display: block; font-weight: 500; font-size: .9rem; margin-bottom: 16px; }
 .quote-form input, .quote-form select, .quote-form textarea {
