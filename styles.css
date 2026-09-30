@@ -331,7 +331,7 @@ details p { color: var(--muted); margin: 0 0 20px; }
   .review-wheel { --visible: 2; }
   .props-grid { grid-template-columns: repeat(2, 1fr); }
   .props-grid div:last-child { grid-column: 1 / -1; }
-  .ba-slider { flex-basis: calc((100% - 20px) / 2); }
+  .ba-slider figcaption { font-size: .78rem; letter-spacing: .03em; }
   .props-grid div { justify-content: flex-start; }
 }
 @media (max-width: 800px) {
@@ -357,6 +357,7 @@ details p { color: var(--muted); margin: 0 0 20px; }
   .hero-logo { width: 76px; height: 76px; }
   .brand-text { font-size: .8rem; letter-spacing: .14em; }
   .ba-slider { flex-basis: 100%; max-width: 440px; }
+  .ba-slider figcaption { font-size: .9rem; letter-spacing: .06em; }
   .review-wheel { --visible: 1; --gap: 16px; gap: 6px; }
   .review-card { --lines: 5; }
   .wheel-btn { width: 36px; height: 36px; font-size: 1.3rem; }
