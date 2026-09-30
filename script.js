@@ -47,7 +47,7 @@ links.addEventListener("click", (e) => {
 });
 
 // Reveal on scroll
-const revealTargets = document.querySelectorAll(".price-card, .addons, .deals, .gallery figure, .ba-grid figure, .steps li, .reviews blockquote, details");
+const revealTargets = document.querySelectorAll(".price-card, .addons, .deals, .gallery figure, .ba-grid figure, .steps li, details");
 if ("IntersectionObserver" in window) {
   revealTargets.forEach((el) => el.classList.add("reveal"));
   const io = new IntersectionObserver((entries) => {
@@ -58,6 +58,63 @@ if ("IntersectionObserver" in window) {
     });
   }, { threshold: 0.15 });
   revealTargets.forEach((el) => io.observe(el));
+}
+
+// Review wheel: arrows, drag and swipe move through the cards; cards fade and shrink
+// the further they are from the visible window, like a scroll wheel.
+const track = document.querySelector(".review-track");
+if (track) {
+  const cards = [...track.children];
+  const prev = document.querySelector(".wheel-prev");
+  const next = document.querySelector(".wheel-next");
+  const step = () => cards[0].getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 0);
+
+  const update = () => {
+    const box = track.getBoundingClientRect();
+    cards.forEach((card) => {
+      const r = card.getBoundingClientRect();
+      // How far the card sits outside the visible window, in card widths (0 = fully inside).
+      const outside = Math.max(box.left - r.left, r.right - box.right, 0) / r.width;
+      const t = Math.min(outside, 1);
+      card.style.opacity = String(1 - t * 0.85);
+      card.style.transform = `scale(${1 - t * 0.12})`;
+    });
+    prev.disabled = track.scrollLeft <= 2;
+    next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+  };
+
+  prev.addEventListener("click", () => track.scrollBy({ left: -step() }));
+  next.addEventListener("click", () => track.scrollBy({ left: step() }));
+  track.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") { e.preventDefault(); next.click(); }
+    if (e.key === "ArrowLeft") { e.preventDefault(); prev.click(); }
+  });
+
+  // Click-and-drag on desktop (touch devices already swipe natively).
+  let startX = 0, startScroll = 0, dragging = false, moved = false;
+  track.addEventListener("pointerdown", (e) => {
+    if (e.pointerType !== "mouse" || e.target.closest("a")) return;
+    dragging = true; moved = false; startX = e.clientX; startScroll = track.scrollLeft;
+    track.classList.add("dragging"); track.setPointerCapture(e.pointerId);
+  });
+  track.addEventListener("pointermove", (e) => {
+    if (!dragging) return;
+    if (Math.abs(e.clientX - startX) > 3) moved = true;
+    track.scrollLeft = startScroll - (e.clientX - startX);
+  });
+  const endDrag = () => {
+    if (!dragging) return;
+    dragging = false; track.classList.remove("dragging");
+    // Snap to the nearest card after a drag.
+    const s = step(); track.scrollTo({ left: Math.round(track.scrollLeft / s) * s });
+  };
+  track.addEventListener("pointerup", endDrag);
+  track.addEventListener("pointercancel", endDrag);
+  track.addEventListener("click", (e) => { if (moved) e.preventDefault(); }, true);
+
+  track.addEventListener("scroll", () => requestAnimationFrame(update), { passive: true });
+  window.addEventListener("resize", update);
+  update();
 }
 
 // Booking request form: validate, then open the visitor's texting app with the request
