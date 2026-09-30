@@ -199,21 +199,27 @@
           <p class="eyebrow">Reviews</p>
           <h2>5 stars on Google</h2>
         </div>
-        <div class="reviews">
-          <blockquote>
-            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <p>"Andrew did an amazing job detailing my car a few weeks ago! I was looking for a quick detail on&hellip;"</p>
-            <cite>Tristyn B. &middot; Google</cite>
-          </blockquote>
-          <blockquote>
-            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <p>"Did a very good and thorough job. Paid attention to detail and didn't have to leave my house&hellip;"</p>
-            <cite>Blake R. &middot; Google</cite>
-          </blockquote>
-          <blockquote class="review-cta">
-            <p>Had your car detailed by us? We'd love to hear how it went.</p>
-            <a href="https://g.page/r/CS7ZPvaLHyNoEBM/review" class="btn" target="_blank" rel="noopener">Leave a Google Review</a>
-          </blockquote>
+        <!-- To add a review: copy one <blockquote class="review-card"> block and paste it above the "Leave a Google Review" card. -->
+        <div class="review-wheel">
+          <button class="wheel-btn wheel-prev" type="button" aria-label="Previous reviews">&#8249;</button>
+          <div class="review-track" tabindex="0" aria-label="Customer reviews">
+            <blockquote class="review-card">
+              <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <p>"Andrew did an amazing job detailing my car a few weeks ago! I was looking for a quick detail on&hellip;"</p>
+              <cite>Tristyn B. &middot; Google</cite>
+            </blockquote>
+            <blockquote class="review-card">
+              <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <p>"Did a very good and thorough job. Paid attention to detail and didn't have to leave my house&hellip;"</p>
+              <cite>Blake R. &middot; Google</cite>
+            </blockquote>
+            <div class="review-card review-cta">
+              <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <p>Had your car detailed by us? We'd love to hear how it went.</p>
+              <a href="https://g.page/r/CS7ZPvaLHyNoEBM/review" class="btn" target="_blank" rel="noopener">Leave a Google Review</a>
+            </div>
+          </div>
+          <button class="wheel-btn wheel-next" type="button" aria-label="More reviews">&#8250;</button>
         </div>
       </div>
     </section>
