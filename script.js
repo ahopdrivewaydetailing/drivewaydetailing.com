@@ -93,7 +93,7 @@ if (track) {
   // Click-and-drag on desktop (touch devices already swipe natively).
   let startX = 0, startScroll = 0, dragging = false, moved = false;
   track.addEventListener("pointerdown", (e) => {
-    if (e.pointerType !== "mouse" || e.target.closest("a")) return;
+    if (e.pointerType !== "mouse" || e.target.closest("a, button")) return;
     dragging = true; moved = false; startX = e.clientX; startScroll = track.scrollLeft;
     track.classList.add("dragging"); track.setPointerCapture(e.pointerId);
   });
@@ -111,6 +111,41 @@ if (track) {
   track.addEventListener("pointerup", endDrag);
   track.addEventListener("pointercancel", endDrag);
   track.addEventListener("click", (e) => { if (moved) e.preventDefault(); }, true);
+
+  // Cut long reviews to a few lines and add a "…" button that opens the full text.
+  const dialog = document.querySelector(".review-dialog");
+  const dialogBody = dialog.querySelector(".review-dialog-body");
+  const refreshMoreButtons = () => {
+    track.querySelectorAll(".review-text").forEach((text) => {
+      const card = text.closest(".review-card");
+      let btn = card.querySelector(".review-more");
+      const cut = text.scrollHeight > text.clientHeight + 2;
+      if (cut && !btn) {
+        btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "review-more";
+        btn.textContent = "\u2026";
+        btn.setAttribute("aria-label", "Read the full review");
+        btn.title = "Read the full review";
+        btn.addEventListener("click", () => {
+          dialogBody.replaceChildren(
+            card.querySelector(".stars").cloneNode(true),
+            Object.assign(document.createElement("p"), { textContent: text.textContent }),
+            card.querySelector("cite").cloneNode(true)
+          );
+          dialog.showModal();
+        });
+        text.after(btn);
+      } else if (!cut && btn) {
+        btn.remove();
+      }
+    });
+  };
+  dialog.querySelector(".review-dialog-close").addEventListener("click", () => dialog.close());
+  dialog.addEventListener("click", (e) => { if (e.target === dialog) dialog.close(); });
+  refreshMoreButtons();
+  window.addEventListener("resize", refreshMoreButtons);
+  if (document.fonts) document.fonts.ready.then(refreshMoreButtons);
 
   track.addEventListener("scroll", () => requestAnimationFrame(update), { passive: true });
   window.addEventListener("resize", update);
