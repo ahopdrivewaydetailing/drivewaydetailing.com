@@ -3,7 +3,7 @@
 const QUOTE_EMAIL = "ahopdrivewaydetailing@gmail.com";
 // Paste your Calendly booking link here (e.g. "https://calendly.com/your-name/mobile-detail")
 // and every "Book" button will open it. Leave empty to send people to the request form.
-const BOOKING_URL = "";
+const BOOKING_URL = "https://calendly.com/ahopdrivewaydetailing/bookadetail";
 // -----------------------------------------------------------------------------
 
 document.getElementById("year").textContent = new Date().getFullYear();
